@@ -1,0 +1,388 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Surprise</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #000000, #ff0000, #800000);
+            background-size: 400% 400%;
+            animation: gradientShift 10s ease infinite;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            transition: opacity 1s ease;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff0000;
+            font-size: 2rem;
+            animation: float 6s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.5);
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1, h2 {
+            font-family: 'Pacifico', cursive;
+            color: #ff0000;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-family: 'Poppins', sans-serif;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(45deg, #ff0000, #800000);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.5);
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(255, 0, 0, 0.7);
+        }
+
+        .no-btn {
+            transition: all 0.2s ease;
+        }
+
+        .no-btn:hover {
+            transform: translateX(100px) translateY(-50px);
+        }
+
+        .shake {
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
+        .yes-btn.glow {
+            animation: glow 1s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.5); }
+            100% { box-shadow: 0 0 40px rgba(255, 0, 0, 1); }
+        }
+
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            z-index: 10;
+            display: none;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .secret {
+            background: linear-gradient(135deg, #1a1a1a, #333333);
+            color: #fff;
+        }
+
+        .secret h1 {
+            color: #ff0000;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff0000;
+            animation: confettiFall 3s linear infinite;
+            z-index: 5;
+        }
+
+        @keyframes confettiFall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .fade-out {
+            opacity: 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                max-width: 90%;
+                padding: 15px;
+            }
+            button {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            .buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts">
+        <!-- Floating hearts -->
+        <div class="heart" style="left: 10%; animation-delay: 0s;">❤️</div>
+        <div class="heart" style="left: 20%; animation-delay: 1s;">💖</div>
+        <div class="heart" style="left: 30%; animation-delay: 2s;">💕</div>
+        <div class="heart" style="left: 40%; animation-delay: 3s;">❤️</div>
+        <div class="heart" style="left: 50%; animation-delay: 4s;">💖</div>
+        <div class="heart" style="left: 60%; animation-delay: 5s;">💕</div>
+        <div class="heart" style="left: 70%; animation-delay: 6s;">❤️</div>
+        <div class="heart" style="left: 80%; animation-delay: 7s;">💖</div>
+        <div class="heart" style="left: 90%; animation-delay: 8s;">💕</div>
+    </div>
+
+    <div class="container" id="page">
+        <!-- Landing Page -->
+        <div id="landing" class="fade-in">
+            <h1>A Very Important Question</h1>
+            <p>Before you act smart… I need one honest answer.<br>No jokes. Just truth.</p>
+            <h2>Do you love me?</h2>
+            <div class="buttons">
+                <button id="yes-btn">YES</button>
+                <button id="no-btn" class="no-btn">NO</button>
+            </div>
+        </div>
+
+        <!-- Romantic Page -->
+        <div id="romantic" style="display: none;" class="fade-in">
+            <h1>I knew it.</h1>
+            <p>Even with miles between us… my heart still chose you.<br><br>Distance doesn’t change what I feel.<br>It just makes every call more special,<br>every text more precious,<br>and every ‘I miss you’ more real.<br><br>You may be far away,<br>but you’re the closest person to my heart.</p>
+            <p><strong>Unlocked:</strong><br>• Late night calls<br>• Random ‘I miss you’ moments<br>• Screenshot collection of your smile<br>• Countdown to the day we finally meet<br>• Lifetime membership in my heart</p>
+            <button id="next-surprise">Next Surprise</button>
+        </div>
+
+        <!-- Funny Page 1 -->
+        <div id="funny1" style="display: none;" class="fade-in">
+            <h1>Terms & Conditions</h1>
+            <p>By clicking YES you agree to:<br><br>• Listening to my random rants<br>• Handling my mood swings<br>• Replying fast<br>• Sending cute good morning texts<br>• Being obsessed with me (mandatory)</p>
+            <button id="accept">I Accept 😌</button>
+        </div>
+
+        <!-- Funny Page 2 -->
+        <div id="funny2" style="display: none;" class="fade-in">
+            <h1>Loyalty Test 👀</h1>
+            <p>Imagine…<br><br>Another girl texts you:<br>‘Hi 😊 you look cute’<br><br>What will you do?</p>
+            <div class="buttons">
+                <button id="reply">Reply instantly 😉</button>
+                <button id="react">React with ❤️</button>
+                <button id="tell">Tell her I have a girlfriend 😌</button>
+            </div>
+        </div>
+
+        <!-- Funny Page 3 -->
+        <div id="funny3" style="display: none;" class="fade-in">
+            <h1>Emotional Warning ⚠️</h1>
+            <p>Warning:<br><br>This girlfriend may:<br>• Overthink small things<br>• Get jealous randomly<br>• Demand attention<br>• Say ‘I’m fine’ when not fine<br><br>Proceed at your own risk.</p>
+            <button id="ready">I’m Ready 😎</button>
+        </div>
+
+        <!-- Final Page -->
+        <div id="final" style="display: none;" class="fade-in">
+            <h1>Happy Valentine’s Day.</h1>
+            <p>Out of everyone in this world,<br>I still choose you.<br><br>One day there will be no screens,<br>no distance,<br>no time zones.<br><br>Just you and me.<br><br>Forever?</p>
+            <button id="forever">Forever ❤️</button>
+        </div>
+
+        <!-- Secret Page -->
+        <div id="secret" style="display: none;" class="fade-in secret">
+            <h1>You Found the Secret 💖</h1>
+            <p>This secret is only for the one who stayed.<br><br>Through distance.<br>Through mood swings.<br>Through everything.<br><br>You’re not just my Valentine.<br>You’re my comfort.<br>My safe place.<br>My always.</p>
+            <button id="back">Come Back</button>
+        </div>
+
+        <!-- Love You Page -->
+        <div id="love-you" style="display: none;" class="fade-in">
+            <h1>I Love You 💖</h1>
+            <p>With all my heart,<br>forever and always.<br><br>Thank you so much for everything.</p>
+            <button id="close">Close</button>
+        </div>
+    </div>
+
+    <div class="popup" id="popup">
+        <p id="popup-text"></p>
+        <button id="retry">Try Again</button>
+    </div>
+
+    <script>
+        let stage = 0;
+        const pages = ['landing', 'romantic', 'funny1', 'funny2', 'funny3', 'final', 'secret', 'love-you'];
+        let currentPage = 0;
+
+        function showPage(index) {
+            pages.forEach(p => document.getElementById(p).style.display = 'none');
+            document.getElementById(pages[index]).style.display = 'block';
+            currentPage = index;
+        }
+
+        function showPopup(text) {
+            document.getElementById('popup-text').innerText = text;
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        function hidePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        function addConfetti() {
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+
+        function shakeButton(button) {
+            button.classList.add('shake');
+            setTimeout(() => button.classList.remove('shake'), 500);
+        }
+
+        document.getElementById('yes-btn').addEventListener('click', () => {
+            addConfetti();
+            showPage(1);
+        });
+        document.getElementById('no-btn').addEventListener('click', () => {
+            if (stage < 3) {
+                shakeButton(document.getElementById('no-btn'));
+            }
+            stage++;
+            if (stage === 1) {
+                document.querySelector('#landing h2').innerText = "Excuse me??? I think your finger slipped.";
+                document.getElementById('yes-btn').innerText = "Oops, my bad";
+                document.getElementById('no-btn').innerText = "No, I meant it";
+            } else if (stage === 2) {
+                document.querySelector('#landing h2').innerText = "So all those late night calls meant nothing?\nAll those ‘I miss you’ texts?\nMy heart is buffering…";
+                document.getElementById('yes-btn').innerText = "Okay okay YES";
+                document.getElementById('no-btn').innerText = "I’m serious, no";
+            } else if (stage === 3) {
+                document.querySelector('#landing h2').innerText = "Error 404: Your heart not found.\nMain roz sochta tha ki bataun ya nahi… par ab nahi ho raha. Mujhe tere liye feelings hain. Aur yeh sab kuch itna real lagta hai ki chupana unfair lag raha tha. Now its on you don’t feel any pressure mughe koi dikkt ni h(y feeling yaad rkh k no click krnaaaaa)\nCorrect answer required to continue.";
+                document.getElementById('yes-btn').classList.add('glow');
+                document.getElementById('yes-btn').innerText = "YES";
+                document.getElementById('no-btn').innerText = "NO";
+            }
+        });
+
+        document.getElementById('next-surprise').addEventListener('click', () => showPage(2));
+        document.getElementById('accept').addEventListener('click', () => showPage(3));
+        document.getElementById('ready').addEventListener('click', () => {
+            addConfetti();
+            showPage(5);
+        });
+
+        document.getElementById('reply').addEventListener('click', () => {
+            showPopup("Reply instantly?\nWah. Speed dekho zara 😌\nMujhe toh ‘typing…’ dikha ke wait karvate ho.\n\nGalat jawab.\nDubara socho warna…\nbhut maarungi 🔥");
+        });
+
+        document.getElementById('react').addEventListener('click', () => {
+            showPopup("Heart react bhi karoge?\nItni himmat? 😌\n\nMain cute hoon iska matlab yeh nahi\nki main chup rahungi.\n\nEk aur galat click aur\nfir dekh lena bht marungi\n Besharamm!!! 😏\n\nTry again.");
+        });
+
+        document.getElementById('tell').addEventListener('click', () => {
+            addConfetti();
+            alert("Good.\nAb theek hai.. 😌\n\nHUHhhhhhhhhhhhhhhh.\n\nProceed.");
+            showPage(4);
+        });
+
+        document.getElementById('retry').addEventListener('click', hidePopup);
+
+        document.getElementById('forever').addEventListener('dblclick', () => {
+            addConfetti();
+            showPage(6);
+        });
+        document.getElementById('back').addEventListener('click', () => showPage(7));
+
+        document.getElementById('close').addEventListener('click', () => {
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                try {
+                    window.close();
+                } catch (e) {
+                    // If can't close, just hide
+                    document.body.style.display = 'none';
+                }
+            }, 1000);
+        });
+
+        let loveSequence = '';
+        document.addEventListener('keydown', (e) => {
+            loveSequence += e.key.toLowerCase();
+            if (loveSequence.includes('love')) {
+                addConfetti();
+                showPage(6);
+                loveSequence = '';
+            }
+        });
+    </script>
+</body>
+</html>
